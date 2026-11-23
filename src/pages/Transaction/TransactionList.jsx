@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
-import { Container, Row, Col, Table } from "react-bootstrap";
+import { Container, Row, Col, Table, Button } from "react-bootstrap";
+import { FaTrash, FaEdit } from "react-icons/fa";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const TransactionList = () => {
@@ -39,6 +40,17 @@ const TransactionList = () => {
                     <td>{transaction.products[0].bookTittle}</td>
                     <td>{transaction.amount}</td>
                     <td>{transaction.status}</td>
+                    <td>
+                      <div>
+                        <Button
+                          variant="danger"
+                          size="sm"
+                          title="Delete transaction"
+                        >
+                          <FaTrash />
+                        </Button>
+                      </div>
+                    </td>
                   </tr>
                 ))}
               </tbody>
