@@ -28,6 +28,21 @@ function DiscountList() {
         
         navigate('/edit/discount/'+id);
     }
+
+    const deleteDiscount = (id) => {
+      axios ({
+        url: apiUrl + "/delete/discount/" + id,
+        method: 'delete'
+      }).then((res) => {
+        alert(res.data.message);
+
+        setDiscounts((prevDiscounts) =>
+          prevDiscounts.filter((d) => d._id !== id),
+        );
+      }).catch((err) => {
+        alert(err.message);
+      })
+    }
     return (
       <Container>
         <Row>
@@ -104,6 +119,7 @@ function DiscountList() {
                         variant="danger"
                         size="sm"
                         title="Delete Discount"
+                        onClick={()=>  deleteDiscount(d._id)}
                       >
                         <FaTrash />
                       </Button>
