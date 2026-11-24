@@ -16,6 +16,17 @@ const TransactionList = () => {
             alert(err.message)
         })
     }, [])
+
+  const deleteTransaction = (id) => {
+    axios({
+      url: apiUrl + 'delete/transaction/' + id,
+      method: 'delete'
+    }).then((res) => {
+      alert(res.data.message)
+    }).catch((err) => {
+      alert(err.message)
+    })
+  }
     return (
       <Container>
         <Row>
@@ -46,6 +57,7 @@ const TransactionList = () => {
                           variant="danger"
                           size="sm"
                           title="Delete transaction"
+                          onClick={() => deleteTransaction(transaction._id)}
                         >
                           <FaTrash />
                         </Button>
